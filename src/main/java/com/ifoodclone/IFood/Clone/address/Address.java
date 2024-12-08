@@ -1,6 +1,6 @@
 package com.ifoodclone.IFood.Clone.address;
 
-import com.ifoodclone.IFood.Clone.user.AddressData;
+import com.ifoodclone.IFood.Clone.user.AddressDTO;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +18,7 @@ public class Address {
     private String state;
     private String code;
 
-    public Address(AddressData address) {
+    public Address(AddressDTO address) {
         this.number = address.number();
         this.street = address.street();
         this.district = address.district();

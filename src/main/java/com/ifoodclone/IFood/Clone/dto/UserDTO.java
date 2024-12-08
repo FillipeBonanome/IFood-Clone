@@ -1,6 +1,6 @@
 package com.ifoodclone.IFood.Clone.dto;
 
-import com.ifoodclone.IFood.Clone.user.AddressData;
+import com.ifoodclone.IFood.Clone.user.AddressDTO;
 import com.ifoodclone.IFood.Clone.user.UserType;
 import com.ifoodclone.IFood.Clone.validation.age.ValidAge;
 import com.ifoodclone.IFood.Clone.validation.cpf.ValidCPF;
@@ -33,7 +33,7 @@ public record UserDTO(
 
         @NotNull
         @Valid
-        AddressData address,
+        AddressDTO address,
 
         @NotNull
         UserType usertype,
