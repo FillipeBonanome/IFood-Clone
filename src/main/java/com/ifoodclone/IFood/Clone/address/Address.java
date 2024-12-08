@@ -5,13 +5,11 @@ import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-@Embeddable
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
+@Embeddable
 public class Address {
-
-    public Address(){}
 
     private String number;
     private String street;

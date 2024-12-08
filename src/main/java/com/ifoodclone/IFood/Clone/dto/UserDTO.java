@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public record UserDTO(
         @NotBlank
         @Size(min = 4, max = 32, message = "Your name must be at least 4 characters and must not surpass 32 characters.")
-        String nome,
+        String name,
 
         @NotBlank
         @Email

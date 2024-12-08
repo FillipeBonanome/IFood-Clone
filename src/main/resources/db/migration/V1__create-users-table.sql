@@ -1,7 +1,7 @@
 create table users(
 
     id bigint not null auto_increment,
-    nome varchar(32) not null,
+    name varchar(32) not null,
     email varchar(64) not null,
     CPF varchar(11) not null,
     phone_number varchar(11) not null,
@@ -21,4 +21,8 @@ create table users(
 
 insert into users values(
     null, "Augusto da Silva", "augusto@gmail.com", "04694050079", "11912345678", "1985-08-15",
+    "333", "Rua das Flores", "Parque dos Jardins", "Cidade Verde", "São Paulo", "13555666", "CLIENT", "123456");
+
+insert into users values(
+    null, "Joseph Pharaoh", "pharaoh@gmail.com", "04694050079", "11912345678", "1985-08-15",
     "333", "Rua das Flores", "Parque dos Jardins", "Cidade Verde", "São Paulo", "13555666", "CLIENT", "123456");
