@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -26,6 +27,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @GetMapping("/{id}")
     public ResponseEntity<UserDetailDTO> getUserById(@PathVariable Long id) {
         var user = userRepository.getReferenceById(id);
@@ -37,11 +41,16 @@ public class UserController {
         var page = userRepository.findAllByActiveTrue(pageable).map(UserListDTO::new);
         return ResponseEntity.ok(page);
     }
-
+    
+    /*
+        TODO --> Remove encoder logic from here, use service classes for user
+    */
     @PostMapping
     @Transactional
     public ResponseEntity<UserDetailDTO> registerUser(@RequestBody @Valid UserDTO user, UriComponentsBuilder uriBuilder) {
         var newUser = new User(user);
+        var encodedPassword = passwordEncoder.encode(user.password());
+        newUser.setPassword(encodedPassword);
         userRepository.save(newUser);
 
         var uri = uriBuilder.path("/medicos/{id}").buildAndExpand(newUser.getId()).toUri();

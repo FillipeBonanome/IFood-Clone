@@ -18,11 +18,3 @@ create table users(
     primary key(id)
 
 );
-
-insert into users values(
-    null, "Augusto da Silva", "augusto@gmail.com", "04694050079", "11912345678", "1985-08-15",
-    "333", "Rua das Flores", "Parque dos Jardins", "Cidade Verde", "São Paulo", "13555666", "CLIENT", "123456");
-
-insert into users values(
-    null, "Joseph Pharaoh", "pharaoh@gmail.com", "04694050079", "11912345678", "1985-08-15",
-    "333", "Rua das Flores", "Parque dos Jardins", "Cidade Verde", "São Paulo", "13555666", "CLIENT", "123456");
