@@ -1,4 +1,8 @@
 package com.ifoodclone.IFood.Clone.dto.token;
 
-public record TokenDTO(String token) {
+import jakarta.validation.constraints.NotBlank;
+
+public record TokenDTO(
+        @NotBlank
+        String token) {
 }
