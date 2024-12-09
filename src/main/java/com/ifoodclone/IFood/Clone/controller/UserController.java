@@ -41,7 +41,7 @@ public class UserController {
         var page = userRepository.findAllByActiveTrue(pageable).map(UserListDTO::new);
         return ResponseEntity.ok(page);
     }
-    
+
     /*
         TODO --> Remove encoder logic from here, use service classes for user
     */
