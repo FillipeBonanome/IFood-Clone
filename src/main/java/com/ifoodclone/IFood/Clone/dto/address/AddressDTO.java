@@ -1,6 +1,6 @@
-package com.ifoodclone.IFood.Clone.user;
+package com.ifoodclone.IFood.Clone.dto.address;
 
-import com.ifoodclone.IFood.Clone.address.Address;
+import com.ifoodclone.IFood.Clone.domain.address.Address;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 

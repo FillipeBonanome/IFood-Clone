@@ -1,7 +1,7 @@
-package com.ifoodclone.IFood.Clone.dto;
+package com.ifoodclone.IFood.Clone.dto.user;
 
-import com.ifoodclone.IFood.Clone.user.AddressDTO;
-import com.ifoodclone.IFood.Clone.user.User;
+import com.ifoodclone.IFood.Clone.domain.user.User;
+import com.ifoodclone.IFood.Clone.dto.address.AddressDTO;
 
 public record UserListDTO(
         String name,

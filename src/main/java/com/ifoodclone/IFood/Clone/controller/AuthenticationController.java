@@ -1,9 +1,9 @@
 package com.ifoodclone.IFood.Clone.controller;
 
-import com.ifoodclone.IFood.Clone.dto.AuthenticationDTO;
-import com.ifoodclone.IFood.Clone.dto.TokenDTO;
-import com.ifoodclone.IFood.Clone.infra.TokenService;
-import com.ifoodclone.IFood.Clone.user.User;
+import com.ifoodclone.IFood.Clone.dto.authentication.AuthenticationDTO;
+import com.ifoodclone.IFood.Clone.dto.token.TokenDTO;
+import com.ifoodclone.IFood.Clone.service.TokenService;
+import com.ifoodclone.IFood.Clone.domain.user.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/login")
 public class AuthenticationController {
+
 
     @Autowired
     private AuthenticationManager manager;

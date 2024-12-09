@@ -1,6 +1,6 @@
-package com.ifoodclone.IFood.Clone.address;
+package com.ifoodclone.IFood.Clone.domain.address;
 
-import com.ifoodclone.IFood.Clone.user.AddressDTO;
+import com.ifoodclone.IFood.Clone.dto.address.AddressDTO;
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

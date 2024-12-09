@@ -1,4 +1,4 @@
-package com.ifoodclone.IFood.Clone.user;
+package com.ifoodclone.IFood.Clone.domain.user;
 
 public enum UserType {
     CLIENT,

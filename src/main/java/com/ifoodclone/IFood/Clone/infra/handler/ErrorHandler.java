@@ -1,7 +1,6 @@
-package com.ifoodclone.IFood.Clone.infra;
+package com.ifoodclone.IFood.Clone.infra.handler;
 
 import jakarta.persistence.EntityNotFoundException;
-import org.hibernate.action.internal.EntityActionVetoException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;

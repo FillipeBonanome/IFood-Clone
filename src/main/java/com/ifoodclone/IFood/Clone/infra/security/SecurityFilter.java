@@ -1,6 +1,7 @@
-package com.ifoodclone.IFood.Clone.infra;
+package com.ifoodclone.IFood.Clone.infra.security;
 
-import com.ifoodclone.IFood.Clone.user.UserRepository;
+import com.ifoodclone.IFood.Clone.service.TokenService;
+import com.ifoodclone.IFood.Clone.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

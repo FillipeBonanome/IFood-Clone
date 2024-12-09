@@ -1,6 +1,5 @@
-package com.ifoodclone.IFood.Clone.infra;
+package com.ifoodclone.IFood.Clone.infra.security;
 
-import com.ifoodclone.IFood.Clone.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

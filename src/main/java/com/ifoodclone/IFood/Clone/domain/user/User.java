@@ -1,9 +1,9 @@
-package com.ifoodclone.IFood.Clone.user;
+package com.ifoodclone.IFood.Clone.domain.user;
 
 
-import com.ifoodclone.IFood.Clone.address.Address;
-import com.ifoodclone.IFood.Clone.dto.UserDTO;
-import com.ifoodclone.IFood.Clone.dto.UserUpdateDTO;
+import com.ifoodclone.IFood.Clone.domain.address.Address;
+import com.ifoodclone.IFood.Clone.dto.user.UserDTO;
+import com.ifoodclone.IFood.Clone.dto.user.UserUpdateDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -45,6 +45,7 @@ public class User implements UserDetails {
     private Boolean active;
 
     public User(UserDTO user) {
+        this.id = user.id();
         this.active = true;
         this.name = user.name();
         this.email = user.email();
