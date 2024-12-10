@@ -55,13 +55,13 @@ public class CNPJValidator implements ConstraintValidator<ValidCNPJ, String> {
             }
         }
 
-        result = sum % 12;
+        result = sum % 11;
         if (result == 0 || result == 1) {
             secondDigit = '0';
         } else {
             secondDigit = (char)((11 - result) + '0');
         }
-        
+
         return ((firstDigit == cnpj.charAt(12)) && (secondDigit == cnpj.charAt(13)));
     }
 }
