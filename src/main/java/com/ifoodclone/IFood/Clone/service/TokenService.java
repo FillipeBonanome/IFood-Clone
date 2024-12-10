@@ -17,12 +17,13 @@ public class TokenService {
 
     @Value("${api.security.token.secret}")
     private String secret;
+    private final String issuer = "IFoodClone API";
 
     public String generateToken(User user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.create().
-                    withIssuer("IFoodClone API")
+                    withIssuer(issuer)
                     .withSubject(user.getEmail())
                     .withExpiresAt(expirationDate())
                     .sign(algorithm);
@@ -40,7 +41,7 @@ public class TokenService {
         try {
             Algorithm algorithm = Algorithm.HMAC256(secret);
             return JWT.require(algorithm)
-                    .withIssuer("IFoodClone API")
+                    .withIssuer(issuer)
                     .build()
                     .verify(tokenJWT)
                     .getSubject();

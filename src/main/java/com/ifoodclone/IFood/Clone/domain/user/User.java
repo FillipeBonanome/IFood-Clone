@@ -3,6 +3,7 @@ package com.ifoodclone.IFood.Clone.domain.user;
 
 import com.ifoodclone.IFood.Clone.domain.address.Address;
 import com.ifoodclone.IFood.Clone.dto.user.UserDTO;
+import com.ifoodclone.IFood.Clone.dto.user.UserRegisterDTO;
 import com.ifoodclone.IFood.Clone.dto.user.UserUpdateDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -44,8 +45,19 @@ public class User implements UserDetails {
 
     private Boolean active;
 
+    public User(UserRegisterDTO user) {
+        this.active = true;
+        this.name = user.name();
+        this.email = user.email();
+        this.CPF = user.CPF();
+        this.phoneNumber = user.phoneNumber();
+        this.birthday = user.birthday();
+        this.address = new Address(user.address());
+        this.usertype = user.usertype();
+        this.password = user.password();
+    }
+
     public User(UserDTO user) {
-        this.id = user.id();
         this.active = true;
         this.name = user.name();
         this.email = user.email();

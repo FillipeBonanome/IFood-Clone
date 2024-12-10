@@ -1,5 +1,7 @@
 package com.ifoodclone.IFood.Clone.infra.handler;
 
+import com.ifoodclone.IFood.Clone.infra.exception.RestaurantException;
+import com.ifoodclone.IFood.Clone.infra.exception.UserException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -23,8 +25,19 @@ public class ErrorHandler {
         return ResponseEntity.badRequest().body(errors.stream().map(ValidationErrorDTO::new).toList());
     }
 
-    public record ValidationErrorDTO(String field, String message) {
+    @ExceptionHandler(RestaurantException.class)
+    public ResponseEntity<String> handleRestaurantError(RestaurantException exception) {
+        var message = exception.getMessage();
+        return ResponseEntity.badRequest().body(message);
+    }
 
+    @ExceptionHandler(UserException.class)
+    public ResponseEntity<String> handleUserError(UserException exception) {
+        var message = exception.getMessage();
+        return ResponseEntity.badRequest().body(message);
+    }
+
+    public record ValidationErrorDTO(String field, String message) {
         public ValidationErrorDTO(FieldError e) {
             this(e.getField(), e.getDefaultMessage());
         }

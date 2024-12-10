@@ -1,10 +1,8 @@
 package com.ifoodclone.IFood.Clone.controller;
 
-import com.ifoodclone.IFood.Clone.dto.user.UserDTO;
-import com.ifoodclone.IFood.Clone.dto.user.UserDetailDTO;
-import com.ifoodclone.IFood.Clone.dto.user.UserListDTO;
-import com.ifoodclone.IFood.Clone.dto.user.UserUpdateDTO;
+import com.ifoodclone.IFood.Clone.dto.user.*;
 import com.ifoodclone.IFood.Clone.domain.user.User;
+import com.ifoodclone.IFood.Clone.infra.exception.UserException;
 import com.ifoodclone.IFood.Clone.repository.UserRepository;
 import com.ifoodclone.IFood.Clone.service.UserService;
 import jakarta.validation.Valid;
@@ -45,10 +43,10 @@ public class UserController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<UserDetailDTO> registerUser(@RequestBody @Valid UserDTO user, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<UserDTO> registerUser(@RequestBody @Valid UserRegisterDTO user, UriComponentsBuilder uriBuilder) throws UserException {
         var newUser = this.userService.registerUser(user);
         return ResponseEntity.created(uriBuilder.path("/medicos/{id}").buildAndExpand(newUser.id()).toUri()).
-                body(new UserDetailDTO(new User(newUser)));
+                body(newUser);
     }
 
     @PutMapping

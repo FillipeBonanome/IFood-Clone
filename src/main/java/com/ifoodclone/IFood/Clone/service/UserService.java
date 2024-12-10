@@ -2,19 +2,13 @@ package com.ifoodclone.IFood.Clone.service;
 
 import com.ifoodclone.IFood.Clone.domain.user.User;
 import com.ifoodclone.IFood.Clone.dto.user.UserDTO;
-import com.ifoodclone.IFood.Clone.dto.user.UserDetailDTO;
+import com.ifoodclone.IFood.Clone.dto.user.UserRegisterDTO;
 import com.ifoodclone.IFood.Clone.dto.user.UserUpdateDTO;
+import com.ifoodclone.IFood.Clone.infra.exception.UserException;
 import com.ifoodclone.IFood.Clone.repository.UserRepository;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class UserService {
@@ -25,13 +19,14 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserDTO registerUser(UserDTO user) {
+    public UserDTO registerUser(UserRegisterDTO user) throws UserException {
+        verifyUniqueEmail(user);
+
         var newUser = new User(user);
         var encodedPassword = passwordEncoder.encode(user.password());
         newUser.setPassword(encodedPassword);
-        userRepository.save(newUser);
-
-        return new UserDTO(newUser);
+        var savedUser = userRepository.save(newUser);
+        return new UserDTO(savedUser);
     }
 
     public User updateUser(UserUpdateDTO data) {
@@ -49,6 +44,14 @@ public class UserService {
         var user = userRepository.getReferenceById(id);
         user.restore();
         return user;
+    }
+
+    private void verifyUniqueEmail(UserRegisterDTO user) throws UserException {
+        var email = user.email();
+        var checkUserEmail = userRepository.findByEmail(email);
+        if (checkUserEmail.isPresent()) {
+            throw new UserException("This e-mail is already registered!");
+        }
     }
 
 

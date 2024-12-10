@@ -27,6 +27,8 @@ public class SecurityConfiguration {
                 sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).
                 authorizeHttpRequests((auth) ->
                         auth.requestMatchers(HttpMethod.POST, "/login").permitAll().
+                        requestMatchers("/restaurant").permitAll().
+                        requestMatchers(HttpMethod.POST, "/user").permitAll().
                         anyRequest().authenticated()).
                 addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class).
                 build();
