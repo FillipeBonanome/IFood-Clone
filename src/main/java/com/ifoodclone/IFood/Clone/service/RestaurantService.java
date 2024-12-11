@@ -42,26 +42,26 @@ public class RestaurantService {
         restaurantRepository.save(newRestaurant);
     }
 
-    private void checkRestaurantByOwnerId(User owner) throws RestaurantException {
+    public void checkRestaurantByOwnerId(User owner) throws RestaurantException {
         var checkRestaurant = restaurantRepository.findByOwnerId(owner.getId());
         if (checkRestaurant.isPresent()) {
             throw new RestaurantException("The owner already has a restaurant!");
         }
     }
 
-    private void checkRestaurantByOwnerType(User owner) throws  RestaurantException {
+    public void checkRestaurantByOwnerType(User owner) throws  RestaurantException {
         if (owner.getUsertype() != UserType.RESTAURANT_OWNER) {
             throw new RestaurantException("This user can't be a owner!");
         }
     }
 
-    private void checkRestaurantByOwnerActivity(User owner) throws RestaurantException {
+    public void checkRestaurantByOwnerActivity(User owner) throws RestaurantException {
         if (!owner.getActive()) {
             throw new RestaurantException("This user is not active, he can't register a restaurant");
         }
     }
 
-    private void checkRestaurantCNPJ(RestaurantRegisterDTO restaurant) throws RestaurantException {
+    public void checkRestaurantCNPJ(RestaurantRegisterDTO restaurant) throws RestaurantException {
         CNPJValidator validator = new CNPJValidator();
         validator.isValid(restaurant.CNPJ());
     }

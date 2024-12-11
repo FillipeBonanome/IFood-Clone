@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 
 public class UserAgeTest {
 
-
     private final AgeValidator validator = new AgeValidator();
 
     @Test
