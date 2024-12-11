@@ -1,26 +1,19 @@
 package com.ifoodclone.IFood.Clone.validation.cnpj;
 
-import com.ifoodclone.IFood.Clone.validation.cnpj.ValidCNPJ;
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
+import com.ifoodclone.IFood.Clone.infra.exception.RestaurantException;
 
-public class CNPJValidator implements ConstraintValidator<ValidCNPJ, String> {
-    @Override
-    public void initialize(ValidCNPJ constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
-    }
+public class CNPJValidator{
 
-    @Override
-    public boolean isValid(String cnpj, ConstraintValidatorContext constraintValidatorContext) {
+    public void isValid(String cnpj) throws RestaurantException {
 
         if (cnpj == null) {
-            return false;
+            throw new RestaurantException("CNPJ can't be null");
         }
 
         cnpj = cnpj.replaceAll("[^\\d]", "");
 
         if (cnpj.length() != 14) {
-            return false;
+            throw new RestaurantException("Invalid CNPJ size");
         }
         char firstDigit, secondDigit;
         int sum, number, weight, result;
@@ -61,7 +54,8 @@ public class CNPJValidator implements ConstraintValidator<ValidCNPJ, String> {
         } else {
             secondDigit = (char)((11 - result) + '0');
         }
-
-        return ((firstDigit == cnpj.charAt(12)) && (secondDigit == cnpj.charAt(13)));
+        if (firstDigit != cnpj.charAt(12) || secondDigit != cnpj.charAt(13)) {
+            throw new RestaurantException("Invalid CNPJ digits");
+        }
     }
 }

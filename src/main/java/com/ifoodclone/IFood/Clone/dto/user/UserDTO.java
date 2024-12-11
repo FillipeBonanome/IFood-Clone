@@ -3,8 +3,6 @@ package com.ifoodclone.IFood.Clone.dto.user;
 import com.ifoodclone.IFood.Clone.domain.user.User;
 import com.ifoodclone.IFood.Clone.domain.user.UserType;
 import com.ifoodclone.IFood.Clone.dto.address.AddressDTO;
-import com.ifoodclone.IFood.Clone.validation.age.ValidAge;
-import com.ifoodclone.IFood.Clone.validation.cpf.ValidCPF;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 
@@ -24,7 +22,6 @@ public record UserDTO(
         String email,
 
         @NotBlank
-        @ValidCPF
         String CPF,
 
         @NotBlank
@@ -32,7 +29,6 @@ public record UserDTO(
         String phoneNumber,
 
         @NotNull
-        @ValidAge
         LocalDateTime birthday,
 
         @NotNull

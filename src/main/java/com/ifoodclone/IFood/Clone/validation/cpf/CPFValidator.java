@@ -1,18 +1,21 @@
 package com.ifoodclone.IFood.Clone.validation.cpf;
 
+import com.ifoodclone.IFood.Clone.infra.exception.UserException;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-public class CPFValidator implements ConstraintValidator<ValidCPF, String> {
-    @Override
-    public void initialize(ValidCPF constraintAnnotation) {
-        ConstraintValidator.super.initialize(constraintAnnotation);
-    }
+public class CPFValidator {
 
-    @Override
-    public boolean isValid(String cpf, ConstraintValidatorContext constraintValidatorContext) {
-        if (cpf == null || cpf.length() != 11 || !cpf.matches("\\d+")) {
-            return false;
+    public void isValid(String cpf) throws UserException {
+
+        if(cpf == null) {
+            throw new UserException("CPF can't be null");
+        }
+
+        cpf = cpf.replaceAll("[^\\d]", "");
+
+        if (cpf.length() != 11 || !cpf.matches("\\d+")) {
+            throw new UserException("Invalid CPF format");
         }
 
         int sum = 0;
@@ -32,9 +35,7 @@ public class CPFValidator implements ConstraintValidator<ValidCPF, String> {
         int secondDigit = (module == 10 || module == 11) ? 0 : module;
 
         if (cpf.charAt(9) - '0' != firstDigit || cpf.charAt(10) - '0' != secondDigit) {
-            return false;
+            throw new UserException("Invalid CPF digits");
         }
-
-        return true;
     }
 }

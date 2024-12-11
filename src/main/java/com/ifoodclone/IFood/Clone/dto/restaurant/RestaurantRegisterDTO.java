@@ -2,7 +2,6 @@ package com.ifoodclone.IFood.Clone.dto.restaurant;
 
 import com.ifoodclone.IFood.Clone.domain.restaurant.Restaurant;
 import com.ifoodclone.IFood.Clone.dto.address.AddressDTO;
-import com.ifoodclone.IFood.Clone.validation.cnpj.ValidCNPJ;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -29,7 +28,6 @@ public record RestaurantRegisterDTO(
         String description,
 
         @NotBlank
-        @ValidCNPJ
         String CNPJ
 ) {
 

@@ -6,6 +6,9 @@ import com.ifoodclone.IFood.Clone.dto.user.UserRegisterDTO;
 import com.ifoodclone.IFood.Clone.dto.user.UserUpdateDTO;
 import com.ifoodclone.IFood.Clone.infra.exception.UserException;
 import com.ifoodclone.IFood.Clone.repository.UserRepository;
+import com.ifoodclone.IFood.Clone.validation.age.AgeValidator;
+import com.ifoodclone.IFood.Clone.validation.cpf.CPFValidator;
+import com.ifoodclone.IFood.Clone.validation.email.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,12 @@ public class UserService {
     private UserRepository userRepository;
 
     public UserDTO registerUser(UserRegisterDTO user) throws UserException {
+        var CPFValidator = new CPFValidator();
+        CPFValidator.isValid(user.CPF());
+
+        var AgeValidator = new AgeValidator();
+        AgeValidator.isValid(user.birthday());
+
         verifyUniqueEmail(user);
 
         var newUser = new User(user);
@@ -48,10 +57,8 @@ public class UserService {
 
     private void verifyUniqueEmail(UserRegisterDTO user) throws UserException {
         var email = user.email();
-        var checkUserEmail = userRepository.findByEmail(email);
-        if (checkUserEmail.isPresent()) {
-            throw new UserException("This e-mail is already registered!");
-        }
+        EmailValidator emailValidator = new EmailValidator();
+        emailValidator.isValid(email);
     }
 
 
