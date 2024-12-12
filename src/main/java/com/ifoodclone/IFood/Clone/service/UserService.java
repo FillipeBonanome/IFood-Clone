@@ -23,12 +23,14 @@ public class UserService {
     private UserRepository userRepository;
 
     public UserDTO registerUser(UserRegisterDTO user) throws UserException {
+
         var CPFValidator = new CPFValidator();
         CPFValidator.isValid(user.CPF());
 
-        var AgeValidator = new AgeValidator();
-        AgeValidator.isValid(user.birthday());
+        var ageValidator = new AgeValidator();
+        ageValidator.isValid(user.birthday());
 
+        //TODO --> Look why this is bugging, userRepository is null if i use this in another clas
         verifyUniqueEmail(user);
 
         var newUser = new User(user);
@@ -56,9 +58,10 @@ public class UserService {
     }
 
     private void verifyUniqueEmail(UserRegisterDTO user) throws UserException {
-        var email = user.email();
-        EmailValidator emailValidator = new EmailValidator();
-        emailValidator.isValid(email);
+        var checkUserEmail = userRepository.findByEmail(user.email());
+        if (checkUserEmail.isPresent()) {
+            throw new UserException("This e-mail is already registered!");
+        }
     }
 
 

@@ -39,4 +39,10 @@ public class RestaurantController {
         var page = restaurantRepository.findAll(pageable).map(RestaurantDTO::new);
         return ResponseEntity.ok(page);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<RestaurantDTO> getRestaurantById(@PathVariable Long id) {
+        var restaurant = restaurantRepository.getReferenceById(id);
+        return ResponseEntity.ok(new RestaurantDTO(restaurant));
+    }
 }

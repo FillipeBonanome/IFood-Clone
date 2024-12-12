@@ -21,4 +21,8 @@ public record MenuItemListDTO(
     public MenuItemListDTO(MenuItem menuItem) {
         this(menuItem.getId(), menuItem.getName(), menuItem.getPrice(), menuItem.getDescription());
     }
+
+    public MenuItemListDTO(MenuItemDTO menuItem) {
+        this(menuItem.id(), menuItem.name(), menuItem.price(), menuItem.description());
+    }
 }

@@ -2,8 +2,6 @@ package com.ifoodclone.IFood.Clone.domain.menu;
 
 import com.ifoodclone.IFood.Clone.domain.menuitem.MenuItem;
 import com.ifoodclone.IFood.Clone.domain.restaurant.Restaurant;
-import com.ifoodclone.IFood.Clone.dto.menu.MenuDTO;
-import com.ifoodclone.IFood.Clone.dto.menu.MenuRegisterDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

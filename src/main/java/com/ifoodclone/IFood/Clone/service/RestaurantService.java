@@ -1,6 +1,7 @@
 package com.ifoodclone.IFood.Clone.service;
 
 import com.ifoodclone.IFood.Clone.domain.address.Address;
+import com.ifoodclone.IFood.Clone.domain.menu.Menu;
 import com.ifoodclone.IFood.Clone.domain.restaurant.Restaurant;
 import com.ifoodclone.IFood.Clone.domain.user.User;
 import com.ifoodclone.IFood.Clone.domain.user.UserType;
@@ -12,6 +13,8 @@ import com.ifoodclone.IFood.Clone.repository.UserRepository;
 import com.ifoodclone.IFood.Clone.validation.cnpj.CNPJValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RestaurantService {
@@ -38,7 +41,8 @@ public class RestaurantService {
                 restaurant.phoneNumber(),
                 restaurant.category(),
                 restaurant.description(),
-                restaurant.CNPJ());
+                restaurant.CNPJ(),
+                null);
 
         var registeredRestaurant = restaurantRepository.save(newRestaurant);
         return new RestaurantDTO(registeredRestaurant);
