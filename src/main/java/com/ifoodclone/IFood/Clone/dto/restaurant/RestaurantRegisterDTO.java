@@ -32,15 +32,12 @@ public record RestaurantRegisterDTO(
         String description,
 
         @NotBlank
-        String CNPJ,
-
-        @Valid
-        List<MenuDTO> menuList
+        String CNPJ
 ) {
 
     public RestaurantRegisterDTO(Restaurant restaurant) {
         this(restaurant.getOwner().getId(), restaurant.getName(), new AddressDTO(restaurant.getAddress()),
-                restaurant.getPhoneNumber(), restaurant.getCategory(), restaurant.getDescription(), restaurant.getCNPJ(), restaurant.getMenus().stream().map(MenuDTO::new).toList());
+                restaurant.getPhoneNumber(), restaurant.getCategory(), restaurant.getDescription(), restaurant.getCNPJ());
     }
 
 }

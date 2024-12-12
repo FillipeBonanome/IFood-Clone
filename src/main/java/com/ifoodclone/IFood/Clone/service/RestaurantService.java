@@ -14,6 +14,7 @@ import com.ifoodclone.IFood.Clone.validation.cnpj.CNPJValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,6 +34,8 @@ public class RestaurantService {
         checkRestaurantByOwnerActivity(owner);
         checkRestaurantCNPJ(restaurant);
 
+        List<Menu> menu = new ArrayList<>();
+
         var newRestaurant = new Restaurant(
                 null,
                 restaurant.name(),
@@ -42,7 +45,7 @@ public class RestaurantService {
                 restaurant.category(),
                 restaurant.description(),
                 restaurant.CNPJ(),
-                null);
+                menu);
 
         var registeredRestaurant = restaurantRepository.save(newRestaurant);
         return new RestaurantDTO(registeredRestaurant);

@@ -2,6 +2,8 @@ package com.ifoodclone.IFood.Clone.domain.user;
 
 
 import com.ifoodclone.IFood.Clone.domain.address.Address;
+import com.ifoodclone.IFood.Clone.domain.menuitem.MenuItem;
+//import com.ifoodclone.IFood.Clone.domain.order.Order;
 import com.ifoodclone.IFood.Clone.dto.user.UserDTO;
 import com.ifoodclone.IFood.Clone.dto.user.UserRegisterDTO;
 import com.ifoodclone.IFood.Clone.dto.user.UserUpdateDTO;
@@ -12,6 +14,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -44,7 +47,10 @@ public class User implements UserDetails {
     private String password;
 
     private Boolean active;
-
+/*
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Order> items = new ArrayList<>();
+*/
     public User(UserRegisterDTO user) {
         this.active = true;
         this.name = user.name();
