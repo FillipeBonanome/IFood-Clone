@@ -45,7 +45,7 @@ public class UserController {
     @Transactional
     public ResponseEntity<UserDTO> registerUser(@RequestBody @Valid UserRegisterDTO user, UriComponentsBuilder uriBuilder) throws UserException {
         var newUser = this.userService.registerUser(user);
-        return ResponseEntity.created(uriBuilder.path("/medicos/{id}").buildAndExpand(newUser.id()).toUri()).
+        return ResponseEntity.created(uriBuilder.path("/user/{id}").buildAndExpand(newUser.id()).toUri()).
                 body(newUser);
     }
 

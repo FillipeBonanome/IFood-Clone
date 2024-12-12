@@ -3,6 +3,7 @@ package com.ifoodclone.IFood.Clone.domain.menu;
 import com.ifoodclone.IFood.Clone.domain.menuitem.MenuItem;
 import com.ifoodclone.IFood.Clone.domain.restaurant.Restaurant;
 import com.ifoodclone.IFood.Clone.dto.menu.MenuDTO;
+import com.ifoodclone.IFood.Clone.dto.menu.MenuRegisterDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -29,10 +30,7 @@ public class Menu {
     private List<MenuItem> items = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id", referencedColumnName = "id")
     private Restaurant restaurant;
 
-
-    public Menu(MenuDTO menu) {
-        this(menu.id(), menu.name(), menu.menuItems(), menu.restaurant());
-    }
 }

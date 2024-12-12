@@ -4,7 +4,7 @@ import com.ifoodclone.IFood.Clone.domain.menuitem.MenuItem;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record MenuItemDTO(
+public record MenuItemListDTO(
         @NotNull
         Long id,
 
@@ -15,13 +15,10 @@ public record MenuItemDTO(
         float price,
 
         @NotBlank
-        String description,
-
-        @NotNull
-        Long menuId
-
+        String description
 ) {
-    public MenuItemDTO(MenuItem menuItem) {
-        this(menuItem.getId(), menuItem.getName(), menuItem.getPrice(), menuItem.getDescription(), menuItem.getMenu().getId());
+
+    public MenuItemListDTO(MenuItem menuItem) {
+        this(menuItem.getId(), menuItem.getName(), menuItem.getPrice(), menuItem.getDescription());
     }
 }

@@ -14,6 +14,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/restaurant")
@@ -27,9 +28,10 @@ public class RestaurantController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<?> registerRestaurant(@RequestBody @Valid RestaurantRegisterDTO restaurant) throws RestaurantException {
-        restaurantService.registerRestaurant(restaurant);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<RestaurantDTO> registerRestaurant(@RequestBody @Valid RestaurantRegisterDTO restaurant, UriComponentsBuilder uriBuilder) throws RestaurantException {
+        var newRestaurant = restaurantService.registerRestaurant(restaurant);
+        return ResponseEntity.created(uriBuilder.path("/restaurant/{id}").buildAndExpand(newRestaurant).toUri()).
+                body(newRestaurant);
     }
 
     @GetMapping

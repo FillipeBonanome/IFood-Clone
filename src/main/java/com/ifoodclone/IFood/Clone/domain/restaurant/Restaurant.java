@@ -2,10 +2,7 @@ package com.ifoodclone.IFood.Clone.domain.restaurant;
 
 import com.ifoodclone.IFood.Clone.domain.address.Address;
 import com.ifoodclone.IFood.Clone.domain.user.User;
-import com.ifoodclone.IFood.Clone.dto.restaurant.RestaurantDTO;
-import com.ifoodclone.IFood.Clone.dto.restaurant.RestaurantRegisterDTO;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

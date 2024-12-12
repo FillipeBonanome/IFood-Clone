@@ -4,6 +4,7 @@ import com.ifoodclone.IFood.Clone.domain.address.Address;
 import com.ifoodclone.IFood.Clone.domain.restaurant.Restaurant;
 import com.ifoodclone.IFood.Clone.domain.user.User;
 import com.ifoodclone.IFood.Clone.domain.user.UserType;
+import com.ifoodclone.IFood.Clone.dto.restaurant.RestaurantDTO;
 import com.ifoodclone.IFood.Clone.dto.restaurant.RestaurantRegisterDTO;
 import com.ifoodclone.IFood.Clone.infra.exception.RestaurantException;
 import com.ifoodclone.IFood.Clone.repository.RestaurantRepository;
@@ -21,7 +22,7 @@ public class RestaurantService {
     @Autowired
     private UserRepository userRepository;
 
-    public void registerRestaurant(RestaurantRegisterDTO restaurant) throws RestaurantException {
+    public RestaurantDTO registerRestaurant(RestaurantRegisterDTO restaurant) throws RestaurantException {
         var owner = userRepository.getReferenceById(restaurant.ownerId());
 
         checkRestaurantByOwnerId(owner);
@@ -39,7 +40,8 @@ public class RestaurantService {
                 restaurant.description(),
                 restaurant.CNPJ());
 
-        restaurantRepository.save(newRestaurant);
+        var registeredRestaurant = restaurantRepository.save(newRestaurant);
+        return new RestaurantDTO(registeredRestaurant);
     }
 
     public void checkRestaurantByOwnerId(User owner) throws RestaurantException {

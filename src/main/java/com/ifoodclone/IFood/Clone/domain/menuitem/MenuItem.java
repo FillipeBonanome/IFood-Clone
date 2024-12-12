@@ -19,11 +19,11 @@ public class MenuItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Long price;
+    private float price;
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "menu_items_id")
+    @JoinColumn(name = "menu_id", referencedColumnName = "id")
     private Menu menu;
 
 }
