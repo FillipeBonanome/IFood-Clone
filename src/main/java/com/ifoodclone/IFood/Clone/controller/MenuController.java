@@ -1,9 +1,8 @@
 package com.ifoodclone.IFood.Clone.controller;
 
-import com.ifoodclone.IFood.Clone.domain.menu.Menu;
 import com.ifoodclone.IFood.Clone.dto.menu.MenuDTO;
 import com.ifoodclone.IFood.Clone.dto.menu.MenuRegisterDTO;
-import com.ifoodclone.IFood.Clone.dto.user.UserListDTO;
+import com.ifoodclone.IFood.Clone.infra.exception.MenuException;
 import com.ifoodclone.IFood.Clone.repository.MenuRepository;
 import com.ifoodclone.IFood.Clone.service.MenuService;
 import jakarta.validation.Valid;
@@ -33,14 +32,14 @@ public class MenuController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<MenuDTO>> getUsers(@PageableDefault(size = 10, sort = {"name"}) Pageable pageable) {
+    public ResponseEntity<Page<MenuDTO>> getMenus(@PageableDefault(size = 10, sort = {"name"}) Pageable pageable) {
         var page = menuRepository.findAll(pageable).map(MenuDTO::new);
         return ResponseEntity.ok(page);
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity<MenuDTO> registerMenu(@RequestBody @Valid MenuRegisterDTO menu, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<MenuDTO> registerMenu(@RequestBody @Valid MenuRegisterDTO menu, UriComponentsBuilder uriBuilder) throws MenuException {
         var newMenu = menuService.registerMenu(menu);
         return ResponseEntity.created(uriBuilder.path("/menu/{id}").buildAndExpand(newMenu.id()).toUri()).
                 body(newMenu);

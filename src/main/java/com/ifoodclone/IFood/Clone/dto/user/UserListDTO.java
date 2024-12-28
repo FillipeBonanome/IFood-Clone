@@ -22,7 +22,7 @@ public record UserListDTO(
         String phoneNumber,
 
         @Valid
-        AddressDTO addressDTO
+        AddressDTO address
 ) {
 
     public UserListDTO(User user) {

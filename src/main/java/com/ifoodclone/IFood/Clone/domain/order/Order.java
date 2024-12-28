@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@Entity(name = "order")
-@Table(name = "orders")
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Table(name = "orders")
+@Entity(name = "Order")
 public class Order {
 
     @Id

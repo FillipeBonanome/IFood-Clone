@@ -5,6 +5,7 @@ import com.ifoodclone.IFood.Clone.domain.order.Order;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -20,15 +21,15 @@ public class OrderItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Valid
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_item_id", referencedColumnName = "id")
-    MenuItem menuItem;
+    private MenuItem menuItem;
 
     @NotNull
-    Long quantity;
+    private Long quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", referencedColumnName = "id")

@@ -1,7 +1,6 @@
 package com.ifoodclone.IFood.Clone.infra.handler;
 
-import com.ifoodclone.IFood.Clone.infra.exception.RestaurantException;
-import com.ifoodclone.IFood.Clone.infra.exception.UserException;
+import com.ifoodclone.IFood.Clone.infra.exception.*;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -32,15 +31,42 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler(UserException.class)
-    public ResponseEntity<String> handleUserError(UserException exception) {
+    public ResponseEntity<FieldValidationErrorDTO> handleUserError(UserException exception) {
         var message = exception.getMessage();
-        return ResponseEntity.badRequest().body(message);
+        return ResponseEntity.badRequest().body(new FieldValidationErrorDTO(message));
+    }
+
+    @ExceptionHandler(MenuException.class)
+    public ResponseEntity<FieldValidationErrorDTO> handleMenuError(MenuException exception) {
+        var message = exception.getMessage();
+        return ResponseEntity.badRequest().body(new FieldValidationErrorDTO(message));
+    }
+
+    @ExceptionHandler(MenuItemException.class)
+    public ResponseEntity<FieldValidationErrorDTO> handleMenuItemError(MenuItemException exception) {
+        var message = exception.getMessage();
+        return ResponseEntity.badRequest().body(new FieldValidationErrorDTO(message));
+    }
+
+    @ExceptionHandler(OrderException.class)
+    public ResponseEntity<FieldValidationErrorDTO> handleOrderError(OrderException exception) {
+        var message = exception.getMessage();
+        return ResponseEntity.badRequest().body(new FieldValidationErrorDTO(message));
+    }
+
+    @ExceptionHandler(OrderItemException.class)
+    public ResponseEntity<FieldValidationErrorDTO> handleOrderItemError(OrderItemException exception) {
+        var message = exception.getMessage();
+        return ResponseEntity.badRequest().body(new FieldValidationErrorDTO(message));
     }
 
     public record ValidationErrorDTO(String field, String message) {
         public ValidationErrorDTO(FieldError e) {
             this(e.getField(), e.getDefaultMessage());
         }
+    }
+
+    public record FieldValidationErrorDTO(String message) {
     }
 
 }

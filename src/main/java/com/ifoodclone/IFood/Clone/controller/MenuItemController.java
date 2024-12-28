@@ -5,6 +5,7 @@ import com.ifoodclone.IFood.Clone.dto.menuitem.MenuItemDTO;
 import com.ifoodclone.IFood.Clone.dto.menuitem.MenuItemListDTO;
 import com.ifoodclone.IFood.Clone.dto.menuitem.MenuItemRegisterDTO;
 import com.ifoodclone.IFood.Clone.dto.user.UserListDTO;
+import com.ifoodclone.IFood.Clone.infra.exception.MenuItemException;
 import com.ifoodclone.IFood.Clone.repository.MenuItemRepository;
 import com.ifoodclone.IFood.Clone.service.MenuItemService;
 import jakarta.validation.Valid;
@@ -41,7 +42,7 @@ public class MenuItemController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity<MenuItemDTO> registerMenuItem(@RequestBody @Valid MenuItemRegisterDTO menuItem, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<MenuItemDTO> registerMenuItem(@RequestBody @Valid MenuItemRegisterDTO menuItem, UriComponentsBuilder uriBuilder) throws MenuItemException {
         var newMenuItem = this.menuItemService.registerMenuItem(menuItem);
         return ResponseEntity.created(uriBuilder.path("/menu_item/{id}").buildAndExpand(newMenuItem.id()).toUri()).
                 body(newMenuItem);
