@@ -1,13 +1,10 @@
 package com.ifoodclone.IFood.Clone.restaurant;
 
-import com.ifoodclone.IFood.Clone.infra.exception.RestaurantException;
-import com.ifoodclone.IFood.Clone.infra.exception.UserException;
-import com.ifoodclone.IFood.Clone.validation.cnpj.CNPJValidator;
+import com.ifoodclone.IFood.Clone.oldversion.infra.exception.RestaurantException;
+import com.ifoodclone.IFood.Clone.oldversion.validation.cnpj.CNPJValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.lang.module.ResolutionException;
 
 public class RestaurantCNPJTest {
 

@@ -1,9 +1,9 @@
 package com.ifoodclone.IFood.Clone.user;
 
-import com.ifoodclone.IFood.Clone.domain.user.User;
-import com.ifoodclone.IFood.Clone.infra.exception.UserException;
-import com.ifoodclone.IFood.Clone.repository.UserRepository;
-import com.ifoodclone.IFood.Clone.validation.email.EmailValidator;
+import com.ifoodclone.IFood.Clone.oldversion.domain.user.User;
+import com.ifoodclone.IFood.Clone.oldversion.infra.exception.UserException;
+import com.ifoodclone.IFood.Clone.oldversion.repository.UserRepository;
+import com.ifoodclone.IFood.Clone.oldversion.validation.email.EmailValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,6 @@ import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.util.Assert;
 
 import java.util.Optional;
 

@@ -1,7 +1,7 @@
 package com.ifoodclone.IFood.Clone.user;
 
-import com.ifoodclone.IFood.Clone.infra.exception.UserException;
-import com.ifoodclone.IFood.Clone.validation.age.AgeValidator;
+import com.ifoodclone.IFood.Clone.oldversion.infra.exception.UserException;
+import com.ifoodclone.IFood.Clone.oldversion.validation.age.AgeValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
