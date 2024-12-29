@@ -1,8 +1,6 @@
 package com.ifoodclone.IFood.Clone.oldversion.domain.user;
 
-
 import com.ifoodclone.IFood.Clone.oldversion.domain.address.Address;
-//import com.ifoodclone.IFood.Clone.domain.order.Order;
 import com.ifoodclone.IFood.Clone.oldversion.domain.order.Order;
 import com.ifoodclone.IFood.Clone.oldversion.dto.user.UserDTO;
 import com.ifoodclone.IFood.Clone.oldversion.dto.user.UserRegisterDTO;
